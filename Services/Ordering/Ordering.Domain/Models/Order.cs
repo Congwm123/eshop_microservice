@@ -5,7 +5,7 @@ public class Order : Aggregate<OrderId>
     private readonly List<OrderItem> _orderItems = new();
     public IReadOnlyList<OrderItem> OrderItems => _orderItems.AsReadOnly();
     public CustomerId CustomerId { get; private set; } = default!;
-    public OrderName OderName { get; private set; } = default!;
+    public OrderName OrderName { get; private set; } = default!;
     public Address ShippingAddress { get; private set; } = default!;
     public Address BillingAddress { get; private set; } = default!;
     public Payment Payment { get; private set; } = default!;
@@ -22,7 +22,7 @@ public class Order : Aggregate<OrderId>
         {
             Id = id,
             CustomerId = customerId,
-            OderName = oderName,
+            OrderName = oderName,
             ShippingAddress = shippingAddress,
             BillingAddress = shippingAddress,
             Payment = payment,
@@ -34,7 +34,7 @@ public class Order : Aggregate<OrderId>
 
     public void Update(OrderName oderName, Address shippingAddress, Address billingAddress, Payment payment, OrderStatus status)
     {
-        OderName = oderName;
+        OrderName = oderName;
         ShippingAddress = shippingAddress;
         BillingAddress = shippingAddress;
         Payment = payment;
