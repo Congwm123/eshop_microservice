@@ -42,6 +42,5 @@ public class UpdateOrderHandler(IApplicationDbContext dbContext) : ICommandHandl
         var newPayment = Payment.Of(orderDto.Payment.CardName, orderDto.Payment.CardNumber, orderDto.Payment.Expiration, orderDto.Payment.Cvv, orderDto.Payment.PaymentMethod);
 
         order.Update(OrderName.Of(orderDto.OrderName), newShippingAdd, newBillingAdd, newPayment, orderDto.Status);
-        throw new NotImplementedException();
     }
 }
