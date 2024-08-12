@@ -1,4 +1,5 @@
-
+using BuildingBlocks.Messaging.MassTransit;
+using BuildingBlocks.Exceptions.Handler;
 using Discount.Grpc;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,6 +28,10 @@ builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(
 {
     opts.Address = new Uri(builder.Configuration["GrpcSettings:DiscountUrl"]!);
 });
+
+builder.Services.AddMessageBroker(builder.Configuration);
+
+builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 
 var app = builder.Build();
 app.MapCarter();

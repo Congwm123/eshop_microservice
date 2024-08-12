@@ -6,7 +6,6 @@ public class BasketRepository(IDocumentSession session) : IBasketRepository
     {
         var basket = await session.LoadAsync<ShoppingCart>(userName, cancellationToken);
         return basket is null ? throw new BasketNotFoundException(userName) : basket;
-        throw new NotImplementedException();
     }
 
     public async Task<ShoppingCart> StoreBasket(ShoppingCart basket, CancellationToken cancellationToken = default)
